@@ -23,11 +23,12 @@ pipelines:
                 tag: master
         execution:
           onExecute: 
+            - printenv
             - bump_semver v1.0.0 major
             - pushd $res_repo_pipe_resourcePath           
             - replace_envs $PWD/keys          
             - add_pipeline_variables vijay_ip_address=$vijay_ip_address
-            - add_pipeline_files $PWD/terraform.tfstate jfrog_pipeline
+            - add_pipeline_files $PWD/terraform jfrog_pipeline
             - popd
 
       - name: step2
@@ -75,7 +76,6 @@ pipelines:
         execution:
           onExecute:
             - pushd $res_repo_pipe_resourcePath
-            - replace_envs $PWD/keys.tfvar
+            - replace_envs $PWD/keys
             - restore_pipeline_files jfrog_pipeline $PWD/terraform.tfstate
-            - terraform destroy -auto-approve -var-file="$PWD/keys.tfvar"
             - popd
