@@ -98,10 +98,9 @@ pipelines:
 #                 tag: master
         execution:
           onExecute:
-#             - pushd $res_repo_pipe_resourcePath
+            - pushd $res_repo_pipe_resourcePath
             - restore_pipeline_files jfrog_pipeline $PWD/terraform
 #             - execute_command [--retry] printen
             - echo "$imageTag"
-#             - retry_command printen
-            - echo "$vijay"
+            - retry_command printen
             - popd
