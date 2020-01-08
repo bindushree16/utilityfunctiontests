@@ -34,25 +34,25 @@ pipelines:
             - bump_semver v3.0.0 minor
             - bump_semver v3.0.0 patch
             - bump_semver v3.0.0 beta
-            - pushd $res_repo_pipe_resourcePath           
-            - replace_envs $PWD/keys 
-            - cat keys
-            - echo "$scm"
-            - cat terraform
-            - compare_git --resource repo_pipe --commit-range HEAD~3..HEAD pipelines.yml
-            - read_json package.json "DOCKER_USERNAME"
-#             - write_output repo_pipe1 "imageTag=master" "sha=$commitSha" 
-            - save_tests test.sh 
-            - add_cache_files $PWD/terraform jfrog_pipe
-            - restore_cache_files jfrog_pipe $PWD/terraform 
-            - add_run_variables imageTag="master"
-#             - export_run_variables
-#             - export_pipeline_variables
-            - add_run_files $PWD/terraform jfrog
-            - add_pipeline_variables scm=$int_s_gitHub_masterName
-            - add_pipeline_files $PWD/terraform jfrog_pipeline
-            - find_resource_variable repo_pipe resourcePath
-            - popd
+#             - pushd $res_repo_pipe_resourcePath           
+#             - replace_envs $PWD/keys 
+#             - cat keys
+#             - echo "$scm"
+#             - cat terraform
+#             - compare_git --resource repo_pipe --commit-range HEAD~3..HEAD pipelines.yml
+#             - read_json package.json "DOCKER_USERNAME"
+# #             - write_output repo_pipe1 "imageTag=master" "sha=$commitSha" 
+#             - save_tests test.sh 
+#             - add_cache_files $PWD/terraform jfrog_pipe
+#             - restore_cache_files jfrog_pipe $PWD/terraform 
+#             - add_run_variables imageTag="master"
+# #             - export_run_variables
+# #             - export_pipeline_variables
+#             - add_run_files $PWD/terraform jfrog
+#             - add_pipeline_variables scm=$int_s_gitHub_masterName
+#             - add_pipeline_files $PWD/terraform jfrog_pipeline
+#             - find_resource_variable repo_pipe resourcePath
+#             - popd
 
       - name: step2
         type: Bash
