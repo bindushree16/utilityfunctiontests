@@ -9,6 +9,12 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: s_gitHub
+      path: vijayreddy1991/utilityfunctiontests    
+      
+  - name: repo_pipe3
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
       path: vijayreddy1991/utilityfunctiontests      
       
 pipelines:
@@ -82,13 +88,13 @@ pipelines:
 
   - name: utilityfuctiontest2
     steps:
-      - name: step3
+      - name: step1
         type: Bash
         configuration:
           integrations:
             - name: s_gitHub
           inputResources:
-            - name: repo_pipe
+            - name: repo_pipe3
 #           runtime:       
 #             type: image     #<image/host>
 #             image:
@@ -98,7 +104,6 @@ pipelines:
         execution:
           onExecute:
             - pushd $res_repo_pipe_resourcePath
-            - replace_envs $PWD/keys
             - restore_pipeline_files jfrog_pipeline $PWD/terraform
 #             - execute_command [--retry] printen
             - echo "$imageTag"
