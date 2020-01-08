@@ -62,7 +62,9 @@ pipelines:
           inputSteps:
             - name: step1
           inputResources:
-            - name: repo_pipe1            
+            - name: repo_pipe      
+          outputResources:
+            - name: repo_pipe1             
           runtime:       
             type: image     #<image/host>
             image:
@@ -83,7 +85,7 @@ pipelines:
         configuration:
           integrations:
             - name: s_gitHub
-          outputResources:
+          inputResources:
             - name: repo_pipe
           runtime:       
             type: image     #<image/host>
