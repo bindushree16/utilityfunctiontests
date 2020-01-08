@@ -21,12 +21,12 @@ pipelines:
             - name: s_gitHub
           inputResources:
             - name: repo_pipe
-          runtime:       
-            type: image     #<image/host>
-            image:
-              custom:
-                name: drydock/u16
-                tag: master
+#           runtime:       
+#             type: image     #<image/host>
+#             image:
+#               custom:
+#                 name: drydock/u16
+#                 tag: master
         execution:
           onExecute: 
             - printenv
