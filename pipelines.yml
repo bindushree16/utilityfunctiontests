@@ -41,7 +41,7 @@ pipelines:
             - cat terraform
             - compare_git --resource repo_pipe --commit-range HEAD~3..HEAD pipelines.yml
             - read_json package.json "DOCKER_USERNAME"
-#             - write_output repo_pipe1 "imageTag=master" "sha=$commitSha" 
+            - write_output repo_pipe1 "imageTag=master" "sha=$commitSha" 
 #             - save_tests test.sh 
             - add_cache_files $PWD/terraform jfrog_pipe
             - restore_cache_files jfrog_pipe $PWD/terraform 
