@@ -89,7 +89,7 @@ pipelines:
           inputResources:
             - name: repo_pipe
           inputSteps:
-            - name: step3            
+            - name: step2          
 #           runtime:       
 #             type: image     #<image/host>
 #             image:
