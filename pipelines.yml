@@ -52,6 +52,7 @@ pipelines:
             - add_pipeline_files $PWD/terraform jfrog_pipeline
             - find_resource_variable repo_pipe resourcePath
             - restore_cache_files jfrog_pipe $PWD/terraform
+            - cat terraform
             - popd
 
       - name: step2
@@ -76,10 +77,10 @@ pipelines:
             - printenv
             - pushd $res_repo_pipe_resourcePath
             - restore_run_files jfrog $PWD/terraform
+            - cat terraform
             - restore_cache_files jfrog_pipe $PWD/terraform
             - echo "$sha"
             - echo "$imageTag"
-            - echo "$pipelines"
             - popd
 
       - name: step3
@@ -101,6 +102,7 @@ pipelines:
           onExecute:
             - pushd $res_repo_pipe_resourcePath
             - restore_pipeline_files jfrog_pipeline $PWD/terraform
+            - cat terraform 
 #             - execute_command [--retry] printen
             - echo "$imageTag"
             - retry_command printen
