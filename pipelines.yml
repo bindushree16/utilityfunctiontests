@@ -55,7 +55,6 @@ pipelines:
             - replace_envs $PWD/pipeline_installer.sh
 
 
-pipelines:
   - name: utilityfuctiontest2
     steps:
       - name: step3
