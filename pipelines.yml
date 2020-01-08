@@ -81,15 +81,15 @@ pipelines:
             - echo "$pipelines"
             - popd
 
-  - name: utilityfuctiontest2
-    steps:
-      - name: step1
+      - name: step3
         type: Bash
         configuration:
           integrations:
             - name: s_gitHub
           inputResources:
             - name: repo_pipe
+          inputSteps:
+            - name: step3            
 #           runtime:       
 #             type: image     #<image/host>
 #             image:
