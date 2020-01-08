@@ -9,13 +9,7 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: s_gitHub
-      path: vijayreddy1991/utilityfunctiontests    
-      
-  - name: repo_pipe3
-    type: GitRepo
-    configuration:
-      gitProvider: s_gitHub
-      path: vijayreddy1991/utilityfunctiontests      
+      path: vijayreddy1991/utilityfunctiontests         
       
 pipelines:
   - name: utilityfuctiontest1
@@ -85,6 +79,7 @@ pipelines:
             - echo "$sha"
             - echo "$imageTag"
             - echo "$pipelines"
+            - popd
 
   - name: utilityfuctiontest2
     steps:
@@ -94,7 +89,7 @@ pipelines:
           integrations:
             - name: s_gitHub
           inputResources:
-            - name: repo_pipe3
+            - name: repo_pipe
 #           runtime:       
 #             type: image     #<image/host>
 #             image:
