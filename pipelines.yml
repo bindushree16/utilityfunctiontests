@@ -77,8 +77,8 @@ pipelines:
             - pushd $res_repo_pipe_resourcePath
             - restore_run_files jfrog $PWD/terraform
             - echo "$sha"
-            - echo "vijay"
-            - echo "pipelines"
+            - echo "$vijay"
+            - echo "$pipelines"
 
   - name: utilityfuctiontest2
     steps:
@@ -101,7 +101,7 @@ pipelines:
             - replace_envs $PWD/keys
             - restore_pipeline_files jfrog_pipeline $PWD/terraform
 #             - execute_command [--retry] printen
-            - echo "pipelines"
-            - retry_command printen
-            - echo "vijay"
+            - echo "$pipelines"
+#             - retry_command printen
+            - echo "$vijay"
             - popd
