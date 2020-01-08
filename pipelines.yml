@@ -12,7 +12,7 @@ pipelines:
         type: Bash
         configuration:
           integrations:
-            - name: github
+            - name: s_gitHub
           inputResources:
             - name: repo_pipe
           runtime:       
@@ -35,7 +35,7 @@ pipelines:
         type: Bash
         configuration:
           integrations:
-            - name: github
+            - name: s_gitHub
           inputSteps:
             - name: step1
           inputResources:
@@ -61,9 +61,7 @@ pipelines:
         type: Bash
         configuration:
           integrations:
-            - name: aws_keys
-          inputSteps:
-            - name: step2
+            - name: s_gitHub
           inputResources:
             - name: repo_pipe
           runtime:       
