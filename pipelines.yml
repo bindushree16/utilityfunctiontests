@@ -2,7 +2,7 @@ resources:
   - name: repo_pipe
     type: GitRepo
     configuration:
-      gitProvider: github
+      gitProvider: s_gitHub
       path: vijayreddy1991/utilityfunctiontests
       
 pipelines:
