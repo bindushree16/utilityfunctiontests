@@ -1,0 +1,81 @@
+resources:
+  - name: repo_pipe
+    type: GitRepo
+    configuration:
+      gitProvider: github
+      path: vijayreddy1991/utilityfunctiontests
+      
+pipelines:
+  - name: utilityfuctiontest1
+    steps:
+      - name: step1
+        type: Bash
+        configuration:
+          integrations:
+            - name: github
+          inputResources:
+            - name: repo_pipe
+          runtime:       
+            type: image     #<image/host>
+            image:
+              custom:
+                name: drydock/u16
+                tag: master
+        execution:
+          onExecute: 
+            - bump_semver v1.0.0 major
+            - pushd $res_repo_pipe_resourcePath           
+            - replace_envs $PWD/keys          
+            - add_pipeline_variables vijay_ip_address=$vijay_ip_address
+            - add_pipeline_files $PWD/terraform.tfstate jfrog_pipeline
+            - popd
+
+      - name: step2
+        type: Bash
+        configuration:
+          integrations:
+            - name: github
+          inputSteps:
+            - name: step1
+          inputResources:
+            - name: repo_pipe            
+          runtime:       
+            type: image     #<image/host>
+            image:
+              custom:
+                name: drydock/u16
+                tag: master
+        execution:
+          onExecute:
+            - printenv
+            - pushd $res_repo_pipe_resourcePath
+            - PWD=$(pwd)
+            - echo $PWD
+            - replace_envs $PWD/pipeline_installer.sh
+
+
+pipelines:
+  - name: utilityfuctiontest2
+    steps:
+      - name: step3
+        type: Bash
+        configuration:
+          integrations:
+            - name: aws_keys
+          inputSteps:
+            - name: step2
+          inputResources:
+            - name: repo_pipe
+          runtime:       
+            type: image     #<image/host>
+            image:
+              custom:
+                name: drydock/u16
+                tag: master
+        execution:
+          onExecute:
+            - pushd $res_repo_pipe_resourcePath
+            - replace_envs $PWD/keys.tfvar
+            - restore_pipeline_files jfrog_pipeline $PWD/terraform.tfstate
+            - terraform destroy -auto-approve -var-file="$PWD/keys.tfvar"
+            - popd
