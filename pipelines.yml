@@ -34,12 +34,12 @@ pipelines:
             - bump_semver v3.0.0 minor
             - bump_semver v3.0.0 patch
             - bump_semver v3.0.0 beta
-#             - pushd $res_repo_pipe_resourcePath           
-#             - replace_envs $PWD/keys 
-#             - cat keys
-#             - echo "$scm"
-#             - cat terraform
-#             - compare_git --resource repo_pipe --commit-range HEAD~3..HEAD pipelines.yml
+            - pushd $res_repo_pipe_resourcePath           
+            - replace_envs $PWD/keys 
+            - cat keys
+            - echo "$scm"
+            - cat terraform
+            - compare_git --resource repo_pipe --commit-range HEAD~3..HEAD pipelines.yml
 #             - read_json package.json "DOCKER_USERNAME"
 # #             - write_output repo_pipe1 "imageTag=master" "sha=$commitSha" 
 #             - save_tests test.sh 
