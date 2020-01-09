@@ -17,9 +17,9 @@ pipelines:
             - name: custom_image_repo
         execution:
           onExecute:
-            - cd $res_custom_image_repo_resourcePath
-            - sudo docker build -t shippabledocker/jfreq:run_id .
-            - sudo docker push shippabledocker/jfreq:$run_id
+#             - cd $res_custom_image_repo_resourcePath
+#             - sudo docker build -t shippabledocker/jfreq:run_id .
+#             - sudo docker push shippabledocker/jfreq:$run_id
             
       - name: custom_images_bash
         type: Bash
