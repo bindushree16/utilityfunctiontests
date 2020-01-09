@@ -5,7 +5,6 @@ resources:
       path: vijayreddy1991/utilityfunctiontests
       gitProvider: s_gitHub
 
-​
 pipelines:
   - name: bash_pipeline
     steps:
@@ -45,7 +44,7 @@ pipelines:
             - add_pipeline_files pipeline_state.txt pipeline_state_file
             - echo "state=$run_number" > run_state.txt
             - add_run_files run_state.txt run_state_file
-​
+            
       - name: restoreStateBash
         type: Bash
         configuration:
