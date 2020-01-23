@@ -14,7 +14,7 @@ resources:
 pipelines:
   - name: utilityfuctiontest1
     steps:
-      - name: step1
+      - name: utilityFunction
         type: Bash
         configuration:
           integrations:
@@ -55,13 +55,13 @@ pipelines:
             - cat terraform
             - popd
 
-      - name: step2
+      - name: utilityFunction2
         type: Bash
         configuration:
           integrations:
             - name: s_gitHub
           inputSteps:
-            - name: step1
+            - name: utilityFunction
           inputResources:
             - name: repo_pipe      
           outputResources:
@@ -83,7 +83,7 @@ pipelines:
             - echo "$imageTag"
             - popd
 
-      - name: step3
+      - name: utilityFunction3
         type: Bash
         configuration:
           integrations:
@@ -91,7 +91,7 @@ pipelines:
           inputResources:
             - name: repo_pipe
           inputSteps:
-            - name: step2          
+            - name: utilityFunction2          
 #           runtime:       
 #             type: image     #<image/host>
 #             image:
