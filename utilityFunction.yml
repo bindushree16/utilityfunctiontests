@@ -105,6 +105,6 @@ pipelines:
             - cat terraform 
 #             - execute_command [--retry] printen
             - echo "$imageTag"
-            - retry_command printen
+#             - retry_command printen
             - popd
 
