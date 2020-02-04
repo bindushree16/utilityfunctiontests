@@ -26,12 +26,12 @@ pipelines:
         configuration:
           inputSteps:
             - name: push_custom_image
-          runtime:            
-            type: image
-            image:
-              custom:
-                name: shippabledocker/jfreq
-                tag: latest
+#           runtime:            
+#             type: image
+#             image:
+#               custom:
+#                 name: shippabledocker/jfreq
+#                 tag: latest
         execution:
           onExecute:
             - echo "Executing testBash.."
