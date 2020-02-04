@@ -2,8 +2,8 @@ resources:
   - name: custom_image_repo
     type: GitRepo
     configuration:
-      path: vijayreddy1991/utilityfunctiontests
-      gitProvider: s_gitHub
+      path: bindushree16/test1
+      gitProvider: gitHub
 
 pipelines:
   - name: bash_pipeline
@@ -12,7 +12,7 @@ pipelines:
         type: Bash
         configuration:
           integrations:
-            - name: vijay_docker
+            - name: docker
           inputResources:
             - name: custom_image_repo
         execution:
