@@ -3,7 +3,7 @@ resources:
     type: GitRepo
     configuration:
       path: bindushree16/test1
-      gitProvider: gitHub
+      gitProvider: github
 
 pipelines:
   - name: bash_pipeline
