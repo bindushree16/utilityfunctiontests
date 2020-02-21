@@ -19,86 +19,86 @@ pipelines:
         execution:
           onExecute: 
             - printenv
-            - bump_semver v3.0.0 major
-            - bump_semver v3.0.0 minor
-            - bump_semver v3.0.0 patch
-            - bump_semver v3.0.0 beta
-            - pushd $res_repo_pipe_resourcePath  
-            - restore_cache_files jfrog_pipe $PWD/file.txt
-            - touch keys
-            - echo "name =$res_repo_pipe_gitProvider_name" >> keys
-            - replace_envs $PWD/keys 
-            - cat keys
-            - touch file.txt
-            - echo "Hello frog" >> file.txt
-            - touch test.txt
-            - echo "Hello pipelines team" >> test.txt
-            - compare_git --resource repo_pipe --commit-range HEAD~3..HEAD pipelines.yml
-            - read_json package.json "DOCKER_USERNAME"
-#             - write_output repo_pipe1 "imageTag=master" "sha=$commitSha" 
-#             - save_tests test.sh 
-            - add_cache_files $PWD/file.txt jfrog_pipe 
-            - add_run_variables imageTag="master"
-            - export_run_variables 
-            - export_pipeline_variables 
-            - add_run_files $PWD/test.txt jfrog
-            - add_pipeline_variables scm=$int_s_gitHub_masterName
-            - add_pipeline_files $PWD/file.txt jfrog_pipeline
-            - find_resource_variable repo_pipe resourcePath
-            - restore_cache_files jfrog_pipe $PWD/file.txt
-            - cat file.txt
-            - openssl genrsa -out key.pem 1024 
-            - openssl rsa -in key.pem -text -noout
-            - openssl rsa -in key.pem -pubout -out pub.pem 
-            - openssl rsa -in pub.pem -pubin -text -noout 
-            - encrypt_string "secretValue" --key pub.pem
-            - encrypted=$(encrypt_string "secretValue" --key pub.pem)
-            - echo "$encrypted"
-            - decrypt_string "$encrypted" --key key.pem
-            - ls -l
-            - touch crypt.txt
-            - echo "testing for sample encryption" >> crypt.txt
-            - encrypt_file --output encrypted.txt crypt.txt --key pub.pem
-            - cat encrypted.txt
-            - decrypt_file encrypted.txt --output decrypted.txt --key key.pem
-            - cat decrypted.txt            
-            - popd
+#             - bump_semver v3.0.0 major
+#             - bump_semver v3.0.0 minor
+#             - bump_semver v3.0.0 patch
+#             - bump_semver v3.0.0 beta
+#             - pushd $res_repo_pipe_resourcePath  
+#             - restore_cache_files jfrog_pipe $PWD/file.txt
+#             - touch keys
+#             - echo "name =$res_repo_pipe_gitProvider_name" >> keys
+#             - replace_envs $PWD/keys 
+#             - cat keys
+#             - touch file.txt
+#             - echo "Hello frog" >> file.txt
+#             - touch test.txt
+#             - echo "Hello pipelines team" >> test.txt
+#             - compare_git --resource repo_pipe --commit-range HEAD~3..HEAD pipelines.yml
+#             - read_json package.json "DOCKER_USERNAME"
+# #             - write_output repo_pipe1 "imageTag=master" "sha=$commitSha" 
+# #             - save_tests test.sh 
+#             - add_cache_files $PWD/file.txt jfrog_pipe 
+#             - add_run_variables imageTag="master"
+#             - export_run_variables 
+#             - export_pipeline_variables 
+#             - add_run_files $PWD/test.txt jfrog
+#             - add_pipeline_variables scm=$int_s_gitHub_masterName
+#             - add_pipeline_files $PWD/file.txt jfrog_pipeline
+#             - find_resource_variable repo_pipe resourcePath
+#             - restore_cache_files jfrog_pipe $PWD/file.txt
+#             - cat file.txt
+#             - openssl genrsa -out key.pem 1024 
+#             - openssl rsa -in key.pem -text -noout
+#             - openssl rsa -in key.pem -pubout -out pub.pem 
+#             - openssl rsa -in pub.pem -pubin -text -noout 
+#             - encrypt_string "secretValue" --key pub.pem
+#             - encrypted=$(encrypt_string "secretValue" --key pub.pem)
+#             - echo "$encrypted"
+#             - decrypt_string "$encrypted" --key key.pem
+#             - ls -l
+#             - touch crypt.txt
+#             - echo "testing for sample encryption" >> crypt.txt
+#             - encrypt_file --output encrypted.txt crypt.txt --key pub.pem
+#             - cat encrypted.txt
+#             - decrypt_file encrypted.txt --output decrypted.txt --key key.pem
+#             - cat decrypted.txt            
+#             - popd
 
-      - name: utilityFunction2
-        type: Bash
-        configuration:
-          integrations:
-            - name: s_gitHub
-          inputSteps:
-            - name: utilityFunction
-          inputResources:
-            - name: repo_pipe                
-        execution:
-          onExecute:
-            - printenv
-            - pushd $res_repo_pipe_resourcePath
-            - restore_run_files jfrog $PWD/test.txt
-            - cat $PWD/test.txt
-            - restore_cache_files jfrog_pipe $PWD/file.txt
-            - echo "$imageTag"
-            - popd
+#       - name: utilityFunction2
+#         type: Bash
+#         configuration:
+#           integrations:
+#             - name: s_gitHub
+#           inputSteps:
+#             - name: utilityFunction
+#           inputResources:
+#             - name: repo_pipe                
+#         execution:
+#           onExecute:
+#             - printenv
+#             - pushd $res_repo_pipe_resourcePath
+#             - restore_run_files jfrog $PWD/test.txt
+#             - cat $PWD/test.txt
+#             - restore_cache_files jfrog_pipe $PWD/file.txt
+#             - echo "$imageTag"
+#             - popd
 
-      - name: utilityFunction3
-        type: Bash
-        configuration:
-          integrations:
-            - name: s_gitHub
-          inputResources:
-            - name: repo_pipe
-          inputSteps:
-            - name: utilityFunction2          
+#       - name: utilityFunction3
+#         type: Bash
+#         configuration:
+#           integrations:
+#             - name: s_gitHub
+#           inputResources:
+#             - name: repo_pipe
+#           inputSteps:
+#             - name: utilityFunction2          
 
-        execution:
-          onExecute:
-            - pushd $res_repo_pipe_resourcePath
-            - restore_pipeline_files jfrog_pipeline $PWD/file.txt
-            - cat file.txt
-#             - execute_command [--retry] printen
-            - retry_command printen
-            - popd      
+#         execution:
+#           onExecute:
+#             - pushd $res_repo_pipe_resourcePath
+#             - restore_pipeline_files jfrog_pipeline $PWD/file.txt
+#             - cat file.txt
+# #             - execute_command [--retry] printen
+#             - retry_command printen
+#             - popd      
 
