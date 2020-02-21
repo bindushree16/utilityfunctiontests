@@ -2,8 +2,10 @@ resources:
   - name: repo_pipe
     type: GitRepo
     configuration:
+      path: bindushree16/utilityfunctiontests
+      gitProvider: github    
 #       gitProvider: s_gitHub
-      path: vijayreddy1991/utilityfunctiontests     
+#       path: vijayreddy1991/utilityfunctiontests     
       
 pipelines:
   - name: utilityfuctiontest1
