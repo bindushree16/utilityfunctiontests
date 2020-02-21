@@ -2,7 +2,7 @@ resources:
   - name: repo_pipe
     type: GitRepo
     configuration:
-      gitProvider: s_gitHub
+#       gitProvider: s_gitHub
       path: vijayreddy1991/utilityfunctiontests     
       
 pipelines:
@@ -11,8 +11,8 @@ pipelines:
       - name: utilityFunction
         type: Bash
         configuration:
-          integrations:
-            - name: s_gitHub
+#           integrations:
+#             - name: s_gitHub
           inputResources:
             - name: repo_pipe
             
